@@ -1,5 +1,0 @@
-
- 1 ERROR
- 2 Not enough data
- 3 invoices
- 4 20201 Starting processing forecasting1 ERROR2 Not enough data3 invoices4 20201 Starting processing forecasting1 ERROR2 Not enough data3 invoices4 20201 Starting processing forecasting /r1 ERROR /r2 Not enough data /r3 invoices /r4 2020 /r1 Starting processing forecasting 1 ERROR 2 Not enough data 3 invoices 4 2020 1 Starting processing forecasting 1 ERROR 2 Not enough data 3 invoices 4 2020 2020-04-19 12:55:32.9415961 Starting processing forecasting 2020-04-19 12:55:32.9418411 ERROR 2 Not enough data 3 invoices 4 2020 
