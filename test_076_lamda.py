@@ -15,8 +15,12 @@ dynamicznie w wywołaniu funkcji map"""
 
 text_list = ["x", "xxx", "xxxxx", "xxxxxxx", ""]
 
-f = lambda str: len(str)
+f = lambda string: len(string)
 
 
 def test_f():
     assert f(text_list[1]) == 3
+
+print(list(map(f, text_list)))
+
+print(list(map(lambda menu: len(menu), text_list)))
