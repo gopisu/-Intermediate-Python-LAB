@@ -43,7 +43,6 @@ import os
 from functools import partial
 
 
-
 def save_url_file(url, dir, file, msg):
     print(msg.format(file))
 
@@ -55,12 +54,12 @@ def save_url_file(url, dir, file, msg):
 
 
 msg = "Please wait {}"
-dir = r'temp/'
+dir = r"temp/"
 
 save_url_to_dir = partial(save_url_file, dir=dir, msg=msg)
 
 
-url = 'https://www.mobilo24.eu/wp-content/uploads/2015/11/Mobilo_logo_kolko_512-565b1626v1_site_icon.png'
-file = 'logo.png'
+url = "https://www.mobilo24.eu/wp-content/uploads/2015/11/Mobilo_logo_kolko_512-565b1626v1_site_icon.png"
+file = "logo.png"
 
 save_url_to_dir(url=url, file=file)

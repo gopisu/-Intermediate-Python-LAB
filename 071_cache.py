@@ -45,5 +45,4 @@ start = time.time()
 
 for i in range(36):
     result = fib(i)
-    print(f'{i}. {round(time.time()-start, 3)}')
-
+    print(f"{i}. {round(time.time()-start, 3)}")
