@@ -1,3 +1,8 @@
+import glob
+import os
+import pickle
+
+
 class Cake:
     known_types = [
         "cake",
@@ -55,12 +60,26 @@ class Cake:
         self.__text = (
             new_text
             if self.kind == "cake" or new_text == ""
-            else print(
-                f"Tries to decorate {self.kind} with text: {new_text}. "
-                f"Only cakes are decoratied with text"
-            )
+            else print(f"Error: {self.kind.upper()} can't be decorated with text. ")
         )
 
+    def save_to_file(self, path):
+        with open(os.path.join(path, f"{self.name}.bakery"), "wb") as file:
+            pickle.dump(self, file)
+
+    @classmethod
+    def read_from_file(cls, path):
+        with open(path, "rb") as file:
+            cake = pickle.load(file)
+        cls.bakery_offer.append(cake)
+        return cake
+
+    @staticmethod
+    def get_bakery_files(directory):
+        return glob.glob(f'{directory}/*.bakery')
+
+
+print(Cake.get_bakery_files("bakery"))
 
 pistacchio_maccaroni = Cake(
     "pistacchio macaroni",
@@ -75,6 +94,14 @@ chocolate_ice_cream = Cake("chocolate ice cream", "ice cream", "sweet", [], "cho
 vanilla_cake = Cake(
     "vanilla cake", "cake", "sweet", ["cherry", "chocolate"], "vanilla mousse"
 )
+waffle = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
+
+vanilla_cake.save_to_file("bakery/")
+chocolate_ice_cream.save_to_file("bakery/")
+pistacchio_maccaroni.save_to_file("bakery/")
+waffle.save_to_file("bakery/")
+vanilla_cake2 = Cake.read_from_file("bakery/vanilla cake.bakery")
+
 
 
 pistacchio_maccaroni.add_additives(["chocolate", "cinnamon"])
@@ -82,11 +109,8 @@ pistacchio_maccaroni.set_filling("cherry&blueberry")
 vanilla_cake.add_additives(["nuts"])
 vanilla_cake.set_filling("cheesecake tasing filling")
 vanilla_cake.text = "Happy birthday"
-
-waffle = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
 waffle.text = "I like waffles"
 
-bakery_offer = [pistacchio_maccaroni, waffle, chocolate_ice_cream, vanilla_cake]
 
 print("Today in our offer:")
 for cake in Cake.bakery_offer:
@@ -101,3 +125,8 @@ print(vars(Cake))
 print("-" * 20)
 print(dir(waffle))
 print(dir(Cake))
+
+"""
+
+
+"""
