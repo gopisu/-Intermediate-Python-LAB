@@ -1,29 +1,3 @@
-"""Szef cukierni w której pracujesz poprosił Cię o napisanie programu, który koniecznie ma działać obiektowo!
-
-Zaczynamy od zdefiniowania klasy Cake, która ma posiadać atrybuty:
-
--name opisujące nazwę produktu
--kind opisujący rodzaj wypieku np. torty, ciastka, muffinki, bezy
--taste z głównym smakiem
--addictions - zawierający listę dodatków do danego ciasta, np. owoce, posypki, polewy itp, jeżeli ciasto nie ma
-dodatków, to będzie to pusta lista
--filling - opis nadzienia, jeżeli dane ciasto nie ma nadzienia, to ma to być pusty napis
--... możesz dodać dalsze własne pomysły :)
-
-Po zdefiniowaniu klasy utwórz kilka instancji tej klasy, to dobry moment na wzbogacenie słownictwa w zakresie
-słodkości w języku angielskim
-Utwórz listę bakery_offer i dodaj do niej instancje wcześniej utworzonych obiektów klasy Cake
-
-Napisz pętlę przechodzącą przez wszystkie instance klasy znajdujące się na liście bakery_offer i wyświetl coś w rodzaju
-(dane pochodzące z instancji zostały wytłuszczone):
-
-Today in our offer:
-Vanilla Cake - (cake) main taste: vanilla with additives of ['chocolade', 'nuts'], filled with cream
-Chocolade Muffin - (muffin) main taste: chocolade with additives of ['chocolade'], filled with
-Super Sweet Maringue - (meringue) main taste: very sweet with additives of [], filled with
-"""
-
-
 class Cake:
     def __init__(self, name, kind, taste, additions, filling):
         self.name = name
@@ -32,17 +6,39 @@ class Cake:
         self.additions = additions.copy()
         self.filling = filling
 
+    def show_additives(self):
+        if self.additions is not []:
+            print("Additives:")
+            for additive in self.additions:
+                print(f"     {additive}")
+
+    def show_info(self):
+        print(f"{self.name.upper()} \nKind:   {self.kind}\nTaste:  {self.taste}")
+        self.show_additives()
+        print(f"Filling: {self.filling}")
+        print("--------------------")
+
+    def set_filling(self, filling):
+        self.filling = filling
+
+    def add_additions(self, additions_list):
+        for addition in additions_list:
+            self.additions.append(addition)
+
 
 pistacchio_macaroni = Cake("pistacchio macaroni", "macaroni", "sweet", [], "pistacchio")
 chocolate_ice_cream = Cake("chocolate ice cream", "ice cream", "sweet", [], "chocolate")
 vanilla_pancake = Cake(
-    "vanilla pancake", "pancake", "sweet", ["cheese", "chocolate"], "vanilla mousse"
+    "vanilla pancake", "pancake", "sweet", ["cherry", "chocolate"], "vanilla mousse"
 )
 
-bakery_offer = [pistacchio_macaroni, chocolate_ice_cream, vanilla_pancake]
 
-for cake in bakery_offer:
-    print(
-        f"{cake.name} - ({cake.kind}) main taste: {cake.taste} with additives of {cake.additions}, "
-        f"filled with {cake.filling}"
-    )
+pistacchio_macaroni.add_additions(["chocolate", "cinnamon"])
+pistacchio_macaroni.set_filling("cherry&blueberry")
+vanilla_pancake.add_additions(["nuts"])
+vanilla_pancake.set_filling("cheesecake tasing filling")
+
+pistacchio_macaroni.show_info()
+vanilla_pancake.show_info()
+
+bakery_offer = [pistacchio_macaroni, chocolate_ice_cream, vanilla_pancake]
