@@ -81,10 +81,10 @@ pistacchio_maccaroni.add_additives(["chocolate", "cinnamon"])
 pistacchio_maccaroni.set_filling("cherry&blueberry")
 vanilla_cake.add_additives(["nuts"])
 vanilla_cake.set_filling("cheesecake tasing filling")
-vanilla_cake.text = 'Happy birthday'
+vanilla_cake.text = "Happy birthday"
 
 waffle = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
-waffle.text = 'I like waffles'
+waffle.text = "I like waffles"
 
 bakery_offer = [pistacchio_maccaroni, waffle, chocolate_ice_cream, vanilla_cake]
 
