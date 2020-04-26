@@ -62,62 +62,42 @@ class Cake:
         )
 
 
-pistacchio_macaroni = Cake(
+pistacchio_maccaroni = Cake(
     "pistacchio macaroni",
     "macaroni",
     "sweet",
     [],
     "pistacchio",
     gluten_free=True,
-    text='"I like you"',
+    text='"I like maccaroni"',
 )
 chocolate_ice_cream = Cake("chocolate ice cream", "ice cream", "sweet", [], "chocolate")
-vanilla_pancake = Cake(
-    "vanilla pancake", "pancake", "sweet", ["cherry", "chocolate"], "vanilla mousse"
+vanilla_cake = Cake(
+    "vanilla cake", "cake", "sweet", ["cherry", "chocolate"], "vanilla mousse"
 )
 
 
-pistacchio_macaroni.add_additives(["chocolate", "cinnamon"])
-pistacchio_macaroni.set_filling("cherry&blueberry")
-vanilla_pancake.add_additives(["nuts"])
-vanilla_pancake.set_filling("cheesecake tasing filling")
+pistacchio_maccaroni.add_additives(["chocolate", "cinnamon"])
+pistacchio_maccaroni.set_filling("cherry&blueberry")
+vanilla_cake.add_additives(["nuts"])
+vanilla_cake.set_filling("cheesecake tasing filling")
+vanilla_cake.text = 'Happy birthday'
 
-cake04 = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
+waffle = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
+waffle.text = 'I like waffles'
 
-bakery_offer = [pistacchio_macaroni, cake04, chocolate_ice_cream, vanilla_pancake]
+bakery_offer = [pistacchio_maccaroni, waffle, chocolate_ice_cream, vanilla_cake]
 
 print("Today in our offer:")
 for cake in Cake.bakery_offer:
     cake.show_info()
 
-print(isinstance(cake04, Cake))
-print(type(cake04))
+print(isinstance(waffle, Cake))
+print(type(waffle))
 
-print(vars(cake04))
+print(vars(waffle))
 print(vars(Cake))
 
 print("-" * 20)
-print(dir(cake04))
+print(dir(waffle))
 print(dir(Cake))
-
-"""Do klasy należy dodać atrybut ukryty __text. Odpowiada on za napis umieszczony na torcie.
-
-W funkcji __init__ przyjmij nowy argument text
-
-Zapisz go w zmiennej __text przeprowadzając kontrolę: napis można zapisać w instancji tylko jeżeli kind jest 'cake' 
-lub text jest napisem pustym. Jeśli te warunki nie są spełnione wyświetl diagnostyczny komunikat (print dla Ciebie, żeby było wiadomo co się dzieje)
-
-Dodaj ukrytą funkcję __get_text, która będzie zwracać wartość zapisaną w __text
-
-Dodaj ukrytą funkcje __set_text, która przyjmie dodatkowy argument new_text i zaktualizuje atrybut
- __text tylko dla wyrobów z kind 'cake'
-
-Zdefiniuj właściwość Text korzystającą z powyższych funkcji.
-
-Tworząc obiekty klasy Cake przekaż dodatkowy argument text - umieść napisy puste lub inne typowo  
-"tortowe", część poprawnych (czyli napis na torcie) i część niepoprawnych (np. napis na waflu)
-
-Wyświetl wszystkie informacje o wszystkich wypiekach
-
-Spróbuj wstawić do właściwości Text napis na torcie i na innym wypieku nietortowym - 
-prześledź poprawność tych operacji ponownie wyświetlając ofertę cukierni"""
