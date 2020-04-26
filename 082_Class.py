@@ -1,15 +1,17 @@
 class Cake:
-    def __init__(self, name, kind, taste, additions, filling):
+    known_types = ['cake', 'muffin', 'ice cream', 'macaroni', 'pancake', 'christmas', 'pretzel', 'other']
+
+    def __init__(self, name, kind, taste, additives, filling):
         self.name = name
-        self.kind = kind
+        self.kind = kind if kind in self.known_types else "other"
         self.taste = taste
-        self.additions = additions.copy()
+        self.additives = additives.copy()
         self.filling = filling
 
     def show_additives(self):
-        if self.additions is not []:
+        if self.additives and self.additives is not []:
             print("Additives:")
-            for additive in self.additions:
+            for additive in self.additives:
                 print(f"     {additive}")
 
     def show_info(self):
@@ -21,9 +23,9 @@ class Cake:
     def set_filling(self, filling):
         self.filling = filling
 
-    def add_additions(self, additions_list):
-        for addition in additions_list:
-            self.additions.append(addition)
+    def add_additives(self, additives_list):
+        for additive in additives_list:
+            self.additives.append(additive)
 
 
 pistacchio_macaroni = Cake("pistacchio macaroni", "macaroni", "sweet", [], "pistacchio")
@@ -33,12 +35,15 @@ vanilla_pancake = Cake(
 )
 
 
-pistacchio_macaroni.add_additions(["chocolate", "cinnamon"])
+pistacchio_macaroni.add_additives(["chocolate", "cinnamon"])
 pistacchio_macaroni.set_filling("cherry&blueberry")
-vanilla_pancake.add_additions(["nuts"])
+vanilla_pancake.add_additives(["nuts"])
 vanilla_pancake.set_filling("cheesecake tasing filling")
 
-pistacchio_macaroni.show_info()
-vanilla_pancake.show_info()
+cake04 = Cake('Cocoa waffle','waffle','cocoa',[],'cocoa')
 
-bakery_offer = [pistacchio_macaroni, chocolate_ice_cream, vanilla_pancake]
+bakery_offer = [pistacchio_macaroni, cake04, chocolate_ice_cream, vanilla_pancake]
+
+print("Today in our offer:")
+for cake in bakery_offer:
+    cake.show_info()
