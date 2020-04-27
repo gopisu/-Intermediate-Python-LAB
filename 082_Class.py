@@ -1,6 +1,8 @@
 import glob
 import os
 import pickle
+import types
+from templates import html
 
 
 class Cake:
@@ -76,19 +78,17 @@ class Cake:
 
     @staticmethod
     def get_bakery_files(directory):
-        return glob.glob(f'{directory}/*.bakery')
+        return glob.glob(f"{directory}/*.bakery")
 
-
-print(Cake.get_bakery_files("bakery"))
 
 pistacchio_maccaroni = Cake(
     "pistacchio macaroni",
     "macaroni",
-    "sweet",
+    "",
     [],
     "pistacchio",
     gluten_free=True,
-    text='"I like maccaroni"',
+    text='"I like"',
 )
 chocolate_ice_cream = Cake("chocolate ice cream", "ice cream", "sweet", [], "chocolate")
 vanilla_cake = Cake(
@@ -96,13 +96,13 @@ vanilla_cake = Cake(
 )
 waffle = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
 
+
+print(Cake.get_bakery_files("bakery"))
 vanilla_cake.save_to_file("bakery/")
 chocolate_ice_cream.save_to_file("bakery/")
 pistacchio_maccaroni.save_to_file("bakery/")
 waffle.save_to_file("bakery/")
 vanilla_cake2 = Cake.read_from_file("bakery/vanilla cake.bakery")
-
-
 
 pistacchio_maccaroni.add_additives(["chocolate", "cinnamon"])
 pistacchio_maccaroni.set_filling("cherry&blueberry")
@@ -116,6 +116,7 @@ print("Today in our offer:")
 for cake in Cake.bakery_offer:
     cake.show_info()
 
+
 print(isinstance(waffle, Cake))
 print(type(waffle))
 
@@ -126,7 +127,44 @@ print("-" * 20)
 print(dir(waffle))
 print(dir(Cake))
 
-"""
+
+# practice adding method to class dynamically
+def export_1_cake_to_html(obj, path):
+    with open(path, "w") as f:
+        content = html.menu_template.format(
+            obj.name, obj.kind, obj.taste, obj.additives, obj.filling
+        )
+        f.write(content)
 
 
-"""
+def export_all_cakes_to_html(cls, path):
+    with open(path, "w") as f:
+        content = ""
+        for obj in cls.bakery_offer:
+            content += html.menu_template.format(
+                obj.name, obj.kind, obj.taste, obj.additives, obj.filling
+            )
+        f.write(content)
+
+
+def export_this_cake_to_html(self, path):
+    with open(path, "w") as f:
+        content = html.menu_template.format(
+            self.name, self.kind, self.taste, self.additives, self.filling
+        )
+        f.write(content)
+
+
+Cake.export_1_cake_to_html = types.MethodType(export_1_cake_to_html, Cake)
+Cake.export_all_cakes_to_html = types.MethodType(export_all_cakes_to_html, Cake)
+for item_in_offer in Cake.bakery_offer:
+    item_in_offer.export_this_cake_to_html = types.MethodType(
+        export_this_cake_to_html, item_in_offer
+    )
+
+for item_in_offer in Cake.bakery_offer:
+    item_in_offer.export_this_cake_to_html(
+        f"exported_html/{item_in_offer.name.replace(' ', '_')}.html"
+    )
+
+Cake.export_all_cakes_to_html("exported_html/all.html")
