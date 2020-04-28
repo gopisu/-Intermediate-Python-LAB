@@ -94,7 +94,7 @@ chocolate_ice_cream = Cake("chocolate ice cream", "ice cream", "sweet", [], "cho
 vanilla_cake = Cake(
     "vanilla cake", "cake", "sweet", ["cherry", "chocolate"], "vanilla mousse"
 )
-waffle = Cake("Cocoa waffle", "waffle", "cocoa", [], "cocoa")
+waffle = Cake("cocoa waffle", "waffle", "cocoa", [], "cocoa")
 
 
 print(Cake.get_bakery_files("bakery"))
