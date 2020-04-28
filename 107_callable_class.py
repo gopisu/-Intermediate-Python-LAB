@@ -3,7 +3,7 @@ Trzeba zdefiniować klasę NoDuplicates, która będzie miała tylko jeden atryb
 Ten atrybut to lista, która ma przechowywać tylko wartości unikalne.
 
 Zdefiniuj klasę NoDuplicates
-W metodzie __init__ utwórz atrybut klasy list, który będzie pustą listą
+W metodzie __init__ utwórz atrybut list, który będzie pustą listą
 Dodaj metodę __call__
 metoda ma przyjąć argument self i listę z nowymi obiektami, jakie mają być przechowywane w liście new_items
 dla każdego elementu z new_items, jeśli ten element nie występuje jeszcze na liście list, dodaj go do tej listy
