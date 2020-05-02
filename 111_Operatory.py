@@ -31,10 +31,7 @@ class Cake:
         print("{}".format(self.name.upper()))
         print("Kind:        {}".format(self.kind))
         print("Taste:       {}".format(self.taste))
-        if len(self.additives) > 0:
-            print("Additives:")
-            for a in self.additives:
-                print("\t\t{}".format(a))
+        self.additives.show_info()
         if len(self.filling) > 0:
             print("Filling:     {}".format(self.filling))
         print("-" * 20)
@@ -63,6 +60,12 @@ class Additives:
     def __len__(self):
         return len(self.list_of_add)
 
+    def show_info(self):
+        if len(self.list_of_add) > 0:
+            print("Additives:")
+            for add in self.list_of_add:
+                print("\t\t{}".format(add))
+
     def __iadd__(self, other):
         if type(other) is str:
             new_additives = self.list_of_add
@@ -84,4 +87,9 @@ if __name__ == "__main__":
     cake01 += "advocat"
     cake01 += ["lemon", "strawberry", "raspberry"]
     print(cake01)
+    cake01.show_info()
+    b = Additives([])
+    cake02 = Cake("Chocolate Cake", "cake", "chocolate", b, "cream")
+    cake02.show_info()
+    # will raise exception
     # cake01 += {"additive": "something not tasty"}
