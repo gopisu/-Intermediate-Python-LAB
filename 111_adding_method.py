@@ -91,5 +91,6 @@ if __name__ == "__main__":
     b = Additives([])
     cake02 = Cake("Chocolate Cake", "cake", "chocolate", b, "cream")
     cake02.show_info()
-    # will raise exception
+
+    # commented code below will raise exception
     # cake01 += {"additive": "something not tasty"}
